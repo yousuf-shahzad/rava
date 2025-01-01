@@ -1,33 +1,70 @@
-import React, { useState } from 'react';
-import { useSettings } from '../contexts/SettingsContext';
+import React, { useState, useEffect } from 'react';
 import EmojiPicker from 'emoji-picker-react';
+import { useSettings } from '../../contexts/SettingsContext';
+
 
 const AddHabit = ({ onAdd }) => {
-  const [habitName, setHabitName] = useState("");
-  const [habitEmoji, setHabitEmoji] = useState("");
-  const [frequency, setFrequency] = useState("day");
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const { settings } = useSettings();
+    const [habitName, setHabitName] = useState("");
+    const [habitEmoji, setHabitEmoji] = useState("🌟");
+    const [category, setCategory] = useState("");
+    const [frequency, setFrequency] = useState("day");
+    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+    const [customCategory, setCustomCategory] = useState("");
+    const { settings } = useSettings();
+  
+    const categories = [
+      "Health",
+      "Productivity",
+      "Learning",
+      "Fitness",
+      "Mindfulness",
+      "Custom"
+    ];
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (habitName.trim()) {
+        const finalCategory = category === "Custom" ? customCategory : category;
+        onAdd(habitName, habitEmoji, frequency, finalCategory);
+        setHabitName("");
+        setHabitEmoji("🌟");
+        setCategory("");
+        setCustomCategory("");
+      }
+    };
+  
+    const onEmojiClick = (emojiData) => {
+        setHabitEmoji(emojiData.emoji);
+        setShowEmojiPicker(false);
+      };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (habitName.trim()) {
-      onAdd(habitName, habitEmoji, frequency);
-      setHabitName("");
-      setHabitEmoji("");
-      setFrequency("day");
-    }
-  };
-
-  const onEmojiClick = (emojiData) => {
-    setHabitEmoji(emojiData.emoji);
-    setShowEmojiPicker(false);
-  };
-
-  return (
-    <div className="relative w-full max-w-2xl mx-auto">
-      <form onSubmit={handleSubmit} className="w-full">
+    return (
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-4">
+          {/* Existing emoji and habit name inputs */}
+
+          <div className="flex-1 space-y-2">
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)} // 
+              className="font-oskari w-full p-4 bg-white dark:bg-gray-800 border-2 border-black dark:border-gray-600 rounded-lg dark:text-white transition-all duration-300 hover:border-gray-400 dark:hover:border-gray-500 focus:shadow-lg focus:scale-[1.02]"
+            >
+              <option value="">Select Category</option>
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+            
+            {category === "Custom" && (
+              <input
+                type="text"
+                value={customCategory}
+                onChange={(e) => setCustomCategory(e.target.value)}
+                placeholder="Enter custom category..."
+                className="font-oskari w-full p-4 bg-white dark:bg-gray-800 border-2 border-black dark:border-gray-600 rounded-lg dark:text-white transition-all duration-300 hover:border-gray-400 dark:hover:border-gray-500 focus:shadow-lg focus:scale-[1.02]"
+              />
+            )}
+          </div>
           <div className="relative">
             <button
               type="button"
@@ -76,8 +113,7 @@ const AddHabit = ({ onAdd }) => {
           </button>
         </div>
       </form>
-    </div>
-  );
-};
+    );
+  };
 
 export default AddHabit;
