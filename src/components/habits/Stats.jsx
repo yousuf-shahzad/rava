@@ -43,13 +43,32 @@ const Stats = ({ habits }) => {
         <div className="h-64">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={getStatsData()}>
-              <XAxis dataKey="date" />
-              <YAxis />
-              <Tooltip />
+              <XAxis 
+              dataKey="date"
+              stroke={settings.theme === "dark" ? "#fff" : "#000"}
+              />
+              <YAxis 
+              stroke={settings.theme === "dark" ? "#fff" : "#000"}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: settings.theme === "dark" ? "#1f2937" : "#fff",
+                  border: `1px solid ${
+                    settings.theme === "dark" ? "#374151" : "#e5e7eb"
+                  }`,
+                  borderRadius: "8px",
+                  color: settings.theme === "dark" ? "#fff" : "#000",
+                }}
+              />
               <Line 
                 type="monotone" 
                 dataKey="completionRate" 
-                stroke="#10B981" 
+                stroke={settings.theme === "dark" ? "#fff" : "#000"}
+                strokeWidth={2}
+                dot={{
+                  fill: settings.theme === "dark" ? "#fff" : "#000",
+                  strokeWidth: 2,
+                }} 
                 name="Completion Rate (%)"
               />
             </LineChart>

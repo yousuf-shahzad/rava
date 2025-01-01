@@ -14,6 +14,8 @@ const PomodoroTimer = () => {
   const [sessions, setSessions] = useState([]);
   const [currentTask, setCurrentTask] = useState("");
 
+  console.log(settings.theme);
+
   useEffect(() => {
     let timer;
     if (isRunning && timeLeft > 0) {
@@ -85,14 +87,14 @@ const PomodoroTimer = () => {
         </div>
         {sessions.length > 0 && (
           <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-600">
-            <h3 className="font-supreme text-black dark:text-white font-medium mb-2">
+            <h3 className="font-oskari text-black dark:text-white font-medium mb-2">
               Today&apos;s Sessions
             </h3>
             <div className="space-y-2">
               {sessions.slice(-3).map((session, i) => (
                 <div
                   key={i}
-                  className="font-jetbrains flex justify-between text-sm text-gray-600 dark:text-gray-300 transition-all duration-200 hover:pl-2 hover:bg-gray-200/50 dark:hover:bg-gray-500/50 rounded p-1"
+                  className="font-oskari flex justify-between text-sm text-gray-600 dark:text-gray-300 transition-all duration-200 hover:pl-2 hover:bg-gray-200/50 dark:hover:bg-gray-500/50 rounded p-1"
                 >
                   <span>{session.task || "Untitled"}</span>
                   <span>{session.duration} mins</span>

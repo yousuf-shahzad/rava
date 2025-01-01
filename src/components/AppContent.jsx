@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSettings } from "../contexts/SettingsContext";
-import { Settings, Github, AlertCircle } from "lucide-react";
+import { Settings, Github, AlertCircle, ArrowDownToLine, ArrowUpFromLine } from "lucide-react";
 import { Alert, AlertDescription } from "./ui/alert";
 import Navbar from "./Navbar";
 import PomodoroTimer from "./PomodoroTimer";
@@ -66,7 +66,6 @@ const AppContent = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-oskari dark:bg-gray-900 dark:text-white transition-colors duration-300">
       <Navbar />
-
       <main className="pt-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
         {/* Header Section */}
         <div className="text-center space-y-4 mb-16 transition-all duration-300 hover:scale-[1.02]">
@@ -82,11 +81,14 @@ const AppContent = () => {
         <div className="flex justify-end gap-4 mb-8">
           <button
             onClick={exportData}
-            className="font-supreme p-3 bg-green-600 text-white rounded-lg transition-all duration-300 hover:bg-green-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md"
+            className="font-supreme p-3 bg-green-600 dark:bg-green-700 text-white rounded-lg transition-all duration-300 hover:bg-green-700 dark:hover:bg-green-950 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md flex items-center gap-2"
           >
+            <ArrowDownToLine size={20} />
             Export Habits
           </button>
-          <label className="font-supreme p-3 bg-blue-600 text-white rounded-lg transition-all duration-300 hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md cursor-pointer">
+          
+          <label className="font-supreme p-3 bg-blue-600 dark:bg-blue-700 text-white rounded-lg transition-all duration-300 hover:bg-blue-700 dark:hover:bg-blue-950  hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md cursor-pointer flex items-center gap-2">
+            <ArrowUpFromLine size={20} />
             Import Habits
             <input
               type="file"
@@ -101,7 +103,7 @@ const AppContent = () => {
           </label>
           <button
             onClick={() => setShowSettings(true)}
-            className="font-supreme p-3 bg-black text-white rounded-lg transition-all duration-300 hover:bg-gray-900 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md flex items-center gap-2"
+            className="font-oskari p-3 bg-black text-white rounded-lg transition-all duration-300 hover:bg-gray-900 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-md flex items-center gap-2"
           >
             <Settings
               size={20}
