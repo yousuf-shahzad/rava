@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Ade';
+  src: url('/fonts/AdeDisplay.woff2') format('woff2'),
+      url('/fonts/AdeDisplay.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves font loading performance */
+}
+
+@font-face {
+  font-family: 'PP Mori';
+  src: url('/fonts/PP-Mori-Book.woff2') format('woff2'),
+      url('/fonts/PP-Mori-Book.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves font loading performance */
+}
+
+@font-face {
+  font-family: 'Oskari G2';
+  src: url('/fonts/OskariG2Regular.woff2') format('woff2'),
+      url('/fonts/OskariG2Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves font loading performance */
+}
